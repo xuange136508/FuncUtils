@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_new"
+            android:icon="@mipmap/ic_least"
+            android:title="最近更新" />
+        <item
+            android:id="@+id/nav_xingan"
+            android:icon="@mipmap/ic_sex"
+            android:title="性感美女" />
+        <item
+            android:id="@+id/nav_shaonv"
+            android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="图册" />
+        <item
+            android:id="@+id/nav_notes"
+            android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="小说" />
+        <item
+            android:id="@+id/nav_videos"
+            android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="视频" />
+    </group>
+
+    <item android:title="关于">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@mipmap/ic_about"
+                android:title="关于应用" />
+            <item
+                android:id="@+id/nav_personal"
+                android:icon="@mipmap/ic_personal"
+                android:title="关于作者" />
+        </menu>
+    </item>
+
+</menu>

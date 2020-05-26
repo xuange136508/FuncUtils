@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- 三点加载动画 -->
+    <declare-styleable name="ThreePointLoadingView">
+        <attr name="pointColor" format="color|reference"/>
+    </declare-styleable>
+
+
+    <!--FloatActionButton悬浮按钮的颜色-->
+    <attr name="fabColor" format="color|reference"/>
+
+    <!--百分比布局-->
+    <declare-styleable name="Proportion">
+        <attr name="widthProportion" format="float" />
+        <attr name="widthProportionType">
+            <flag name="screenWidth" value="0" />
+            <flag name="screenHeight" value="1" />
+            <flag name="anotherBorder" value="2" />
+        </attr>
+        <attr name="heightProportion" format="float" />
+        <attr name="heightProportionType">
+            <flag name="screenWidth" value="0" />
+            <flag name="screenHeight" value="1" />
+            <flag name="anotherBorder" value="2" />
+        </attr>
+        <attr name="screenOrientation">
+            <flag name="portrait" value="0" />
+            <flag name="landscape" value="1" />
+            <flag name="sensor" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <!-- 圆形图片-->
+    <attr name="borderRadius" format="dimension" />
+    <attr name="type">
+        <enum name="circle" value="0" />
+        <enum name="round" value="1" />
+    </attr>
+    <declare-styleable name="RoundImageViewByXfermode">
+        <attr name="borderRadius" />
+        <attr name="type" />
+    </declare-styleable>
+    <declare-styleable name="RoundImageView">
+        <attr name="borderRadius" />
+        <attr name="type" />
+    </declare-styleable>
+
+
+</resources>

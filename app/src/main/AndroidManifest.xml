@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.my.loopiine">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+    <application
+        android:name="com.my.loopiine.app.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+
+
+        <!-- 获取安装渠道信息 -->
+        <meta-data
+            android:name="installResourceType"
+            android:value="${RES_TYPE}" />
+        <meta-data
+            android:name="installResourceNumber"
+            android:value="${RES_NUM}" />
+
+        <!-- Glide 配置 -->
+        <!--    <meta-data android:name="com.haiku.waterbuyer.utils.image.GlideConfiguration"
+               android:value="GlideModule"/> -->
+
+           <activity android:name="com.my.loopiine.ui.MainActivity"
+               android:theme="@style/Transparent">
+
+           </activity>
+
+           <activity android:name="com.my.loopiine.ui.typeImageList.widget.TypeImageActivity"
+               />
+           <activity android:name="com.my.loopiine.ui.typeImageList.widget.TypeImageActivity2"
+               />
+           <activity android:name="com.my.loopiine.ui.ImageDetialActivity">
+           </activity>
+        <activity android:name="com.my.loopiine.ui.TextDetialActivity">
+        </activity>
+
+
+           <!--GreenDao 测试界面 -->
+        <activity android:name="com.my.loopiine.utils.userdemo.greendao.GreenDaoActivity">
+        </activity>
+
+        <!--bufferknife 测试界面 -->
+        <activity android:name="com.my.loopiine.utils.userdemo.bufferknife.BufferKnifeActivity">
+        </activity>
+
+        <!--okhttp 测试界面 -->
+        <activity android:name="com.my.loopiine.utils.userdemo.okhttp.OKhttpActivity">
+        </activity>
+
+        <!--vitamio 测试界面 -->
+        <activity android:name="com.my.loopiine.utils.userdemo.vitamio.VideoPlayerActivity">
+        </activity>
+
+        <!--retrofit 测试界面 -->
+        <activity android:name="com.my.loopiine.utils.userdemo.retrofit.RetrofitActivity">
+        </activity>
+
+        <!--toolbar折叠界面 -->
+        <activity android:name="com.my.loopiine.utils.userdemo.activity.CollapsToolbarActivity">
+        </activity>
+
+        <!--权限6.0 -->
+        <activity android:name="com.my.loopiine.utils.userdemo.rxpermission.LaunchActivity">
+        </activity>
+
+        <activity android:name="com.my.loopiine.test.TestActivity">
+        </activity>
+
+        <activity android:name="com.my.loopiine.test.TestActivity2">
+        </activity>
+        <activity android:name="com.my.loopiine.test.TestActivity3">
+        </activity>
+        <activity android:name="com.my.loopiine.test.TestActivity4"
+            android:exported="true">
+
+        </activity>
+        <activity android:name="com.my.loopiine.test.WebviewTest"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:hardwareAccelerated="true">
+        </activity>
+        <activity android:name="com.my.loopiine.test.WebviewTest2"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:hardwareAccelerated="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".test.TouPinActivity">
+        </activity>
+
+
+        <!--趣视频demo-->
+        <activity android:name="com.my.loopiine.FunVideo.FunVideoActivity">
+        </activity>
+        <activity android:name="com.my.loopiine.FunVideo.FunVideoDetailActivity">
+        </activity>
+
+
+        <!--插件 start -->
+        <activity
+            android:name="com.ryg.dynamicload.DLProxyActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.ryg.dynamicload.proxy.activity.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ryg.dynamicload.DLProxyFragmentActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.ryg.dynamicload.proxy.fragmentactivity.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <service android:name="com.ryg.dynamicload.DLProxyService" >
+            <!--
+            <intent-filter >
+                <action android:name="com.ryg.dynamicload.proxy.service.action"/>
+            </intent-filter>
+            -->
+        </service>
+        <!--插件 end -->
+
+
+
+
+    </application>
+
+</manifest>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="speech_recommend_film">
+        <item>\"播放湖南卫视\"</item>
+        <item>\"西游记\"</item>
+    </string-array>
+
+        <!--String[] fileArray = getResources().getStringArray(R.array.speech_recommend_film);-->
+        <!--List<String> arrayList = Arrays.asList(fileArray);-->
+        <!--for (int i = 0; i < arrayList.size(); i++) {-->
+        <!--Toast.makeText(this,arrayList.get(i),Toast.LENGTH_SHORT).show();-->
+        <!--}-->
+</resources>

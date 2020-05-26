@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">豌豆荚</string>
+    <string name="title_activity_test">TestActivity</string>
+
+
+
+    <string name="open" >open</string>
+    <string name="close" >close</string>
+    <!-- 渠道区别 -->
+    <string name="application_name" >豌豆荚</string>
+
+
+</resources>

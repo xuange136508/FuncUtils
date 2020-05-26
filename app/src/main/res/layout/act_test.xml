@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:fit="http://schemas.android.com/apk/res-auto"
+    xmlns:qlbundle="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <Button
+        android:id="@+id/btn_change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="改变字体"/>
+
+    <!--字体适配-->
+    <com.my.loopiine.utils.userdemo.parcentlayout.ProportionRelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        qlbundle:heightProportion="0.2"
+        qlbundle:heightProportionType="screenWidth"
+        android:background="#000">
+        <com.my.loopiine.test.FitTextView
+            android:id="@+id/ftv"
+            android:layout_centerHorizontal="true"
+            fit:fit_text="五月天"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+      <TextView
+          android:layout_alignParentBottom="true"
+          android:layout_toLeftOf="@+id/ftv"
+          android:textColor="#fff"
+          android:text="阿信"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+        <com.my.loopiine.test.FitTextView
+            android:id="@+id/text_right"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/ftv"
+            fit:fit_text="怪兽"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+    </com.my.loopiine.utils.userdemo.parcentlayout.ProportionRelativeLayout>
+
+
+
+
+    <!--自定义阴影控件-->
+    <!--<com.gigamole.library.ShadowLayout-->
+        <!--android:id="@+id/sl"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--app:sl_shadowed="true"-->
+        <!--app:sl_shadow_angle="90"-->
+        <!--app:sl_shadow_radius="5dp"-->
+        <!--app:sl_shadow_distance="20dp"-->
+        <!--app:sl_shadow_color="#000">-->
+        <!--&lt;!&ndash; Set your child`s&ndash;&gt;-->
+        <!--<RelativeLayout-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="#00796B">-->
+        <!--</RelativeLayout>-->
+    <!--</com.gigamole.library.ShadowLayout>-->
+
+</RelativeLayout>

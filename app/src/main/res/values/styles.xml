@@ -1,0 +1,48 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Transparent" parent="AppTheme.NoActionBar"/>
+
+    <!-- 折叠ToolBar菜单样式 -->
+    <style name="ToolbarTheme" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="actionMenuTextColor">@color/material_white</item>
+        <item name="android:textColorPrimary">@color/material_white</item>
+        <item name="android:textColorSecondary">@color/material_white</item>
+        <item name="actionOverflowButtonStyle">@style/ActionButton.Overflow</item>
+    </style>
+    <!--菜单收起来时的三个小点的样式-->
+    <style name="ActionButton.Overflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:src">@mipmap/ic_menu_over_flow</item>
+    </style>
+
+    <!-- 底部弹出动画 -->
+    <style name="AnimationBottomFade">
+        <item name="android:windowEnterAnimation">@anim/in_bottomtotop</item>
+        <item name="android:windowExitAnimation">@anim/out_toptobottom</item>
+    </style>
+
+
+    <!--弹出对话框动画-->
+    <style name="dialogWindowAnim" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/popview_in_amin</item>
+        <item name="android:windowExitAnimation">@anim/popview_out_amin</item>
+    </style>
+
+</resources>
+
+

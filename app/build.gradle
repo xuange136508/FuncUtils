@@ -1,0 +1,233 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'   //使用Retrolambda使代码更加简洁
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+
+
+    //签名配置
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['ALIAS']
+            keyPassword keystoreProperties['ALIAS_PASSWORD']
+            storeFile file(keystoreProperties['KEYSTORE_PATH'])
+            storePassword keystoreProperties['KEYSTORE_PASSWORD']
+        }
+        debug {
+            keyAlias keystoreProperties['ALIAS']
+            keyPassword keystoreProperties['ALIAS_PASSWORD']
+            storeFile file(keystoreProperties['KEYSTORE_PATH'])
+            storePassword keystoreProperties['KEYSTORE_PASSWORD']
+        }
+    }
+
+    //默认配置,所有 productFlavors 都会继承 defaultConfig 中配置的属性
+    defaultConfig {
+        applicationId "com.my.loopiine"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        /*ndk {
+            //模块名称，即编译出来的.so的名字
+            moduleName "JNISample"
+            //默认情况下JNI中是无法使用STL标准库的，加入此字段表示使用STL标准库。
+            stl "stlport_static"
+            //"log" 表示加入Android的调试日志，只要在导入#include <android/log.h>就可以使用__android_log_print方法打印日志到logcat中。
+            ldLibs "log"
+            //指定cpu的类型
+            abiFilters "armeabi-v7a"
+        }*/
+
+        //必须要保证所有的flavor 都属于同一个维度
+        flavorDimensions "default"
+    }
+
+
+    buildTypes {
+        release {
+            // 混淆
+            minifyEnabled false
+            // Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resources文件
+//            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            //签名配置
+            signingConfig signingConfigs.release
+
+            //全局数值
+            resValue("string", "version_text", "${defaultConfig.versionName}")
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "String", "BaseUrl", "\"https://www.9itv.com.cn\""
+        }
+
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            //签名配置
+            signingConfig signingConfigs.release
+        }
+    }
+
+    sourceSets {
+        main {
+            /*res.srcDirs += ['src/main/tt']*/
+//            jniLibs.srcDirs = ['src/main/jniLibs']
+            //jniLibs.srcDirs = ['libs']
+
+        }
+    }
+
+
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+
+    //配置lambda表达式
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+    productFlavors {
+        wandoujia {
+            manifestPlaceholders = [RES_TYPE: "website", RES_NUM: "4"]
+            buildConfigField "boolean", "AUTO_UPDATES", "true"
+            resValue "color", "flavor_color", "#ff0000"
+            //这样就可以输出两个定制的apk，不同包名，版本号也不同
+            applicationId "com.example.flavor1"
+            versionCode 5
+        }
+        xiaomi {
+            manifestPlaceholders = [RES_TYPE: "website", RES_NUM: "5"]
+            buildConfigField "boolean", "AUTO_UPDATES", "false"
+            resValue "color", "flavor_color", "#ff0000"
+            applicationId "com.example.flavor2"
+            versionCode 6
+        }
+        //默认配置
+        default_Channel{
+            manifestPlaceholders = [RES_TYPE: "website", RES_NUM: "6"]
+            buildConfigField "boolean", "AUTO_UPDATES", "false"
+            resValue "color", "flavor_color", "#ff0000"
+            applicationId "com.example.flavor3"
+            versionCode 7
+        }
+    }
+
+
+
+
+    //配置打包文件
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && !outputFile.name.endsWith('unsigned.apk')) {
+                def fileName
+                if (variant.buildType.name.equals('release')) {
+                    fileName = "Loopiine_${defaultConfig.versionName}_tv_${variant.productFlavors[0].name}.apk"
+                } else if (variant.buildType.name.equals('debug')) {
+                    fileName = "Loopiine_N${defaultConfig.versionName}_tv.apk"
+                }
+                outputFileName = fileName
+            }
+
+        }
+    }
+
+
+    // ndk-build模式
+    /*externalNativeBuild {
+        ndkBuild {
+            // Provides a relative path to your ndkBuild script.
+            path file("src/main/jni/Android.mk")
+        }
+    }*/
+
+}
+
+// 这个plugin需要放在android配置之后，因为需要读取android中的配置项
+//apply plugin: 'replugin-plugin-gradle'
+//repluginPluginConfig {
+//    pluginName = "demo0"
+//    hostApplicationId = "com.qihoo360.replugin.sample.host"
+//    hostAppLauncherActivity = "com.qihoo360.replugin.sample.host.MainActivity"
+//}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //一些MaterialDesign必须的库
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:cardview-v7:26.1.0'
+    //recycleView
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    //recycleView动画库
+    compile 'jp.wasabeef:recyclerview-animators:2.1.0'
+    //图片框架
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //rxjava
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    //gson解析
+    compile 'com.google.code.gson:gson:2.4'
+    //注解
+    //compile 'com.jakewharton:butterknife:7.0.1'
+    implementation 'com.jakewharton:butterknife:7.0.1'
+    annotationProcessor 'com.jakewharton:butterknife:7.0.1'
+
+    //侵入式状态栏
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    //klog
+    compile 'com.github.zhaokaiqiang.klog:library:1.4.0'
+    //网络框架
+    compile 'com.squareup.retrofit2:retrofit:2.0.0'
+    compile 'com.squareup.retrofit2:converter-jackson:2.0.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+    //权限
+    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
+    //富文本-html
+    compile 'zhou.widget:richtext:1.0.4'
+    //内存泄漏监控
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    //圆形imageview
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    //阴影控件
+    compile 'com.github.devlight.shadowlayout:library:1.0.2'
+
+    testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    androidTestCompile 'com.android.support:support-annotations:23.4.0'
+
+    compile project(path: ':library')
+    compile project(':vitamio')
+    compile files('libs/greendao-generator-1.3.0.jar')
+    compile files('libs/greendao-1.3.7.jar')
+    compile files('libs/freemarker-2.3.20.jar')
+    //不同渠道添加依赖
+    //wandoujiacompile files('libs/freemarker-2.3.20.jar')
+    //wandoujiacompile 'de.hdodenhof:circleimageview:2.1.0'
+    wandoujiaCompile project(path: ':testpackage')
+    //测试jar
+    //    compile files('libs/mysdk.jar')
+
+    //360
+//    compile 'com.qihoo360.replugin:replugin-plugin-lib:2.2.0'
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <Button
+        android:id="@+id/btn_change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试"/>
+
+    <ImageView
+        android:id="@+id/iv_gif"
+        android:layout_centerInParent="true"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
+
+
+    <com.my.loopiine.utils.userdemo.gif.view.BothLineProgress
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/mybp"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="#ff8a00"
+        android:layout_gravity="center_horizontal" />
+
+
+</RelativeLayout>
